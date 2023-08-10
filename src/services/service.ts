@@ -1,8 +1,8 @@
 import queryString from "querystring";
-export interface ServiceApiResponse {
+export interface ServiceApiResponse<T> {
   error: string | null;
   code: number;
-  data: any;
+  data: T | null;
 }
 export class Service {
   url: string;
@@ -18,11 +18,11 @@ export class Service {
     this.loggerEnabled = loggerEnabled;
   }
 
-  async fetchApi(
+  async fetchApi<T>(
     requestUrl: string,
     payload: object | null = null,
     method: "GET" | "PATCH" | "POST" | "DELETE" | "PUT" = "GET"
-  ): Promise<ServiceApiResponse> {
+  ): Promise<ServiceApiResponse<T>> {
     try {
       let fetchOptions: any = {
         method,
@@ -52,7 +52,7 @@ export class Service {
           error: response.statusText,
           code: response.status,
           data: null,
-        } as ServiceApiResponse;
+        } as ServiceApiResponse<T>;
       }
 
       let result = await response.json();
@@ -60,13 +60,13 @@ export class Service {
         error: null,
         code: response.status,
         data: result,
-      } as ServiceApiResponse;
+      } as ServiceApiResponse<T>;
     } catch (err: any) {
       return {
         error: err?.message || "Internal Server Error",
         code: 500,
         data: err,
-      } as ServiceApiResponse;
+      } as ServiceApiResponse<T>;
     }
   }
 }

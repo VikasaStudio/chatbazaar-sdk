@@ -1,4 +1,5 @@
-import { VariantState } from "interfaces/repositories/ProductVariantRepositoryInterfaces";
+import { VariantState } from "../repositories/ProductVariantRepositoryInterfaces";
+
 export interface ProductVariantUpdateRequest {
   title?: string;
   description?: string;

@@ -1,4 +1,5 @@
-import { OrderItems } from "interfaces/repositories/OrderRepositoryInterfaces";
+import { OrderItems } from "../repositories/OrderRepositoryInterfaces";
+
 export interface UpsertCartItemsRequest {
     cartId?: string;
     vendorId: string;

@@ -1,6 +1,6 @@
-import * as repositoryInterfaces from './repositories';
-import * as apiInterfaces from './api';
+import { repository } from './repositories';
+import { api } from './services';
 export default {
-    repository: repositoryInterfaces,
-    api: apiInterfaces
+    repository,
+    api
 }
