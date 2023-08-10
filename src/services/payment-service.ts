@@ -12,11 +12,11 @@ export class PaymentService extends Service {
         super(serviceBaseUrl, serviceToken);
     }
     async createUpiPaymentUrl(payload: CreatePaymentUrlRequest) {
-        let response = await this.fetchApi(`/payment-link`, payload, 'POST');
+        let response = await this.fetchApi<any>(`/payment-link`, payload, 'POST');
         return response;
     }
     async patchPaymentState(paymentId: string, state: PaymentStates, orderId: string) {
-        let response = await this.fetchApi(`/${paymentId}/state`, {state, orderId}, 'PATCH');
+        let response = await this.fetchApi<any>(`/${paymentId}/state`, {state, orderId}, 'PATCH');
         return response;
     }
 }

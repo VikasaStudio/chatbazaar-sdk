@@ -13,19 +13,19 @@ export class OrderService extends Service {
         super(serviceBaseUrl, serviceToken);
     }
     async getOrderById(orderId: string) {
-        let response = await this.fetchApi(`/${orderId}`);
+        let response = await this.fetchApi<any>(`/${orderId}`);
         return response;
     }
     async createOrUpdateCart(payload: UpsertCartItemsRequest) {
-        let response = await this.fetchApi(`/items`, payload, 'PUT');
+        let response = await this.fetchApi<any>(`/items`, payload, 'PUT');
         return response;
     }
     async checkoutCart(cartId:string) {
-        let response = await this.fetchApi(`/${cartId}/checkout`, {}, 'POST');
+        let response = await this.fetchApi<any>(`/${cartId}/checkout`, {}, 'POST');
         return response;
     }
     async updateState(orderId: string, orderState:OrderStates) {
-        let response = await this.fetchApi(`/${orderId}/state`, {orderState}, 'PATCH');
+        let response = await this.fetchApi<any>(`/${orderId}/state`, {orderState}, 'PATCH');
         return response;
     }
 }

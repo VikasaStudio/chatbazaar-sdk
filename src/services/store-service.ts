@@ -15,15 +15,15 @@ export class StoreService extends Service {
         super(serviceBaseUrl, serviceToken);
     }
     async getStoreById(vendorId: string) {
-        let response = await this.fetchApi(`/${vendorId}`);
+        let response = await this.fetchApi<any>(`/${vendorId}`);
         return response;
     }
     async getStoreByStoreCode(storeCode: string) {
-        let response = await this.fetchApi(`/code/${storeCode}`);
+        let response = await this.fetchApi<any>(`/code/${storeCode}`);
         return response;
     }
     async createStore(payload:CreateVendorRequest) {
-        let response = await this.fetchApi(`/register`, payload, 'POST');
+        let response = await this.fetchApi<any>(`/register`, payload, 'POST');
         return response;
     }
 }

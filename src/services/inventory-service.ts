@@ -67,11 +67,11 @@ export class InventoryService extends Service {
     return response;
   }
   async deleteProduct(groupId: string) {
-    let response = await this.fetchApi(`/product/${groupId}`, {}, "DELETE");
+    let response = await this.fetchApi<any>(`/product/${groupId}`, {}, "DELETE");
     return response;
   }
   async deleteVariant(variantId: string) {
-    let response = await this.fetchApi(`/variant/${variantId}`, {}, "DELETE");
+    let response = await this.fetchApi<any>(`/variant/${variantId}`, {}, "DELETE");
     return response;
   }
 }
