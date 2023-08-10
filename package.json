@@ -4,7 +4,8 @@
   "description": "SDK for chat-bazaar backend, rest based api",
   "main": "src/index.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "postinstall": "npm run build"
   },
   "keywords": [
     "sdk",
