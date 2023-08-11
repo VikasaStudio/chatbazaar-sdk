@@ -1,0 +1,1 @@
+{"version":3,"file":"StoreServiceInterfaces.d.ts","sourceRoot":"","sources":["../../../../src/interfaces/services/StoreServiceInterfaces.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,mBAAmB;IAClC,SAAS,EAAE,MAAM,CAAC;IAClB,UAAU,EAAE,MAAM,CAAC;IACnB,WAAW,EAAE,MAAM,CAAC;IACpB,YAAY,EAAE,MAAM,CAAC;IACrB,QAAQ,EAAE,MAAM,CAAC;IACjB,aAAa,CAAC,EAAE,MAAM,CAAC;IACvB,OAAO,EAAE,MAAM,CAAC;CACjB"}
