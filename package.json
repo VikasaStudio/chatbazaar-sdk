@@ -6,8 +6,7 @@
   "types": "dist/types",
   "scripts": {
     "prebuild": "rm -rf dist/",
-    "build": "tsc -p .",
-    "postinstall": "npm run build"
+    "build": "tsc -p ."
   },
   "files": ["dist"],
   "keywords": [
