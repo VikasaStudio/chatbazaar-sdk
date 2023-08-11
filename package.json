@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "SDK for chat-bazaar backend, rest based api",
   "main": "dist/index.js",
-  "types": "dist/types",
   "scripts": {
     "prebuild": "rm -rf dist/",
     "build": "tsc -p ."

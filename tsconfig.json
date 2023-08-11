@@ -10,6 +10,6 @@
         "forceConsistentCasingInFileNames": true,
         "outDir": "dist",
         "declaration": true,
-        "declarationDir": "./dist/types"
+        "declarationDir": "./node_modules/@types"
     }
 }
