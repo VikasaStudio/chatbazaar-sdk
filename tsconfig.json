@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
-        "target": "ES6",
         "module": "CommonJS",
+        "target": "ES6",
         "rootDir": ".",
         "baseUrl": "./",
         "removeComments": true,
@@ -10,7 +10,6 @@
         "forceConsistentCasingInFileNames": true,
         "outDir": "dist",
         "declaration": true,
-        "declarationDir": "./types"
-    },
-    "include": ["src"]
+        "declarationDir": "./dist/types"
+    }
 }
