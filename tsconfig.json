@@ -8,8 +8,9 @@
         "strict": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "outDir": "dist",
+        "outDir": "./lib",
         "declaration": true,
-        "declarationDir": "./node_modules/@types"
+        "declarationMap": true,
+        "declarationDir": "./@types"
     }
 }

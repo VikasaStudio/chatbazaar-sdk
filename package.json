@@ -2,12 +2,12 @@
   "name": "@vikasastudio/chatbazaar-sdk",
   "version": "1.0.0",
   "description": "SDK for chat-bazaar backend, rest based api",
-  "main": "dist/index.js",
+  "main": "lib/src/index.js",
+  "types": "@types",
   "scripts": {
-    "prebuild": "rm -rf dist/",
-    "build": "tsc -p ."
+    "prebuild": "rm -rf lib/",
+    "build": "tsc -p tsconfig.json"
   },
-  "files": ["dist"],
   "keywords": [
     "sdk",
     "api",
