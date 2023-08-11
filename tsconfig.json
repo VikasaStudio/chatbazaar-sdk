@@ -1,16 +1,17 @@
 {
     "compilerOptions": {
-        "module": "CommonJS",
-        "target": "ES6",
-        "rootDir": ".",
-        "baseUrl": "./",
+        "module": "nodenext",
+        "target": "ES2016",
         "removeComments": true,
         "strict": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
-        "outDir": "./lib",
+        "outDir": "./lib/esm",
         "declaration": true,
         "declarationMap": true,
-        "declarationDir": "./@types"
-    }
+        "declarationDir": "./lib/types"
+    },
+    "include": [
+        "./src"
+    ]
 }
