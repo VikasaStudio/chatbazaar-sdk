@@ -8,7 +8,7 @@
     "lib"
   ],
   "scripts": {
-    "prebuild": "rm -rf lib && rm -rf @types",  
+    "prebuild": "rm -rf lib",  
     "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "prepublishOnly": "npm run build"
   },
