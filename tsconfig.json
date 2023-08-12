@@ -5,7 +5,6 @@
         "moduleResolution": "NodeNext",
         "removeComments": true,
         "strict": true,
-        "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "outDir": "./lib/esm",
         "declaration": true,

@@ -1,4 +1,4 @@
-import queryString from "querystring";
+import * as  queryString from "querystring";
 export interface ServiceApiResponse<T> {
   error: string | null;
   code: number;
