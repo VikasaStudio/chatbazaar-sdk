@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
-        "module": "nodenext",
+        "module": "ES6",
         "target": "ES2016",
+        "moduleResolution": "NodeNext",
         "removeComments": true,
         "strict": true,
         "esModuleInterop": true,
