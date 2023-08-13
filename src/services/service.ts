@@ -32,6 +32,7 @@ export class Service {
           Authorization: `Basic ${this.serviceToken}`,
         },
       };
+      
       let url = `${this.url}${requestUrl}`;
       if (payload && Object.keys(payload).length > 0) {
         if (method !== "GET")

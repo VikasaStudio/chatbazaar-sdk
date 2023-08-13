@@ -1,25 +1,8 @@
 import {
-  VariantState,
   ProductVariantFindFilter,
   ProductVariantSchema,
 } from "../interfaces/repositories/ProductVariantRepositoryInterfaces";
 import { Service } from "./service";
-
-export interface ProductVariantUpdateRequest {
-  title?: string;
-  description?: string;
-  productCode?: string;
-  condition?: VariantState;
-  price?: number;
-  sale_price?: number;
-  sale_price_effective_date?: string;
-  link?: string;
-  image_link?: string;
-  brand?: string;
-  item_group_id?: string;
-  item_category?: string;
-  // quantity?:number
-}
 
 export class InventoryService extends Service {
   constructor(serviceBaseUrl: string, serviceToken: string) {

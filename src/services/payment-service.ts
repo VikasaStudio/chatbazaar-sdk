@@ -1,11 +1,7 @@
 import { PaymentStates } from "../interfaces/repositories/PaymentRepositoryInterfaces";
+import { CreatePaymentUrlRequest } from "../interfaces/services/PaymentServiceInterfaces";
 import { Service } from "./service";
 
-export interface CreatePaymentUrlRequest {
-    customerId: string;
-    vendorId: string;
-    orderId: string;
-}
 
 export class PaymentService extends Service {
     constructor(serviceBaseUrl: string, serviceToken: string) {

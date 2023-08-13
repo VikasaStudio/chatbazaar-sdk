@@ -1,11 +1,6 @@
-import { OrderItems, OrderStates } from "../interfaces/repositories/OrderRepositoryInterfaces";
+import { OrderStates } from "../interfaces/repositories/OrderRepositoryInterfaces";
+import { UpsertCartItemsRequest } from "../interfaces/services/OrderServiceInterfaces";
 import { Service } from "./service";
-export interface UpsertCartItemsRequest {
-    cartId?: string;
-    vendorId: string;
-    customerId: string;
-    cartItems: OrderItems[];
-}
 export declare class OrderService extends Service {
     constructor(serviceBaseUrl: string, serviceToken: string);
     getOrderById(orderId: string): Promise<import("./service").ServiceApiResponse<any>>;
