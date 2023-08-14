@@ -1,41 +1,50 @@
-import * as  queryString from "querystring";
+import * as queryString from "querystring";
 export interface ServiceApiResponse<T> {
   error: string | null;
   code: number;
   data: T | null;
 }
+export interface IServiceOptions {
+  Authorization?: string;
+  method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+}
+
 export class Service {
   url: string;
-  serviceToken: string;
+  apiKey: string;
   loggerEnabled: boolean;
   constructor(
     serviceBaseUrl: string,
-    serviceToken: string,
+    apiKey: string,
     loggerEnabled: boolean = false
   ) {
     this.url = serviceBaseUrl;
-    this.serviceToken = serviceToken;
+    this.apiKey = apiKey;
     this.loggerEnabled = loggerEnabled;
   }
 
   async fetchApi<T>(
     requestUrl: string,
     payload: object | null = null,
-    method: "GET" | "PATCH" | "POST" | "DELETE" | "PUT" = "GET"
+    options: IServiceOptions
   ): Promise<ServiceApiResponse<T>> {
     try {
+      options.method = options.method || "GET";
       let fetchOptions: any = {
-        method,
+        method: options.method,
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          Authorization: `Basic ${this.serviceToken}`,
+          ["x-api-key"]: this.apiKey,
+          Authorization: options?.Authorization,
         },
       };
-      
+
       let url = `${this.url}${requestUrl}`;
-      if (payload && Object.keys(payload).length > 0) {
-        if (method !== "GET")
+
+      const isPayloadProvided = payload && Object.keys(payload).length > 0;
+      if (isPayloadProvided) {
+        if (options.method !== "GET")
           fetchOptions = {
             ...fetchOptions,
             body: JSON.stringify(payload),
