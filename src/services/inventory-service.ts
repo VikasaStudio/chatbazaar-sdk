@@ -2,59 +2,87 @@ import {
   ProductVariantFindFilter,
   ProductVariantSchema,
 } from "../interfaces/repositories/ProductVariantRepositoryInterfaces";
-import { Service } from "./service";
+import { IServiceOptions, Service } from "./service";
 
 export class InventoryService extends Service {
-  constructor(serviceBaseUrl: string, serviceToken: string) {
-    super(serviceBaseUrl, serviceToken);
+  constructor(serviceBaseUrl: string, apiKey: string) {
+    super(serviceBaseUrl, apiKey);
   }
-  async getVariantsByGroupId(variantGroupId: string) {
+
+  async getVariantsByGroupId(
+    variantGroupId: string,
+    options: IServiceOptions | {} = {}
+  ) {
     let response = await this.fetchApi<{ data: ProductVariantSchema[] }>(
-      `/product/${variantGroupId}`
+      `/product/${variantGroupId}`,
+      null,
+      { ...options, method: "GET" }
     );
     return response;
   }
-  async findVariants(searchQuery: ProductVariantFindFilter) {
+  async findVariants(
+    searchQuery: ProductVariantFindFilter,
+    options: IServiceOptions | {} = {}
+  ) {
     let response = await this.fetchApi<{ data: ProductVariantSchema[] }>(
       `/variant`,
-      searchQuery
+      searchQuery,
+      {
+        ...options,
+        method: "GET",
+      }
     );
     return response;
   }
-  async createVariant(payload: ProductVariantSchema) {
+  async createVariant(
+    payload: ProductVariantSchema,
+    options: IServiceOptions | {} = {}
+  ) {
     let response = await this.fetchApi<{
       variantId: {
         data: string;
         error: any;
         success: boolean;
       };
-    }>("/variant", payload, "POST");
+    }>("/variant", payload, { ...options, method: "POST" });
     return response;
   }
-  async createBulkVariants(payload: ProductVariantSchema[]) {
+  async createBulkVariants(
+    payload: ProductVariantSchema[],
+    options: IServiceOptions | {} = {}
+  ) {
     let response = await this.fetchApi<{ data: string[] }>(
       "/bulk-variants",
       payload,
-      "POST"
+      { ...options, method: "POST" }
     );
     return response;
   }
-  async patchVariantById(variantId: string) {
+  async patchVariantById(
+    variantId: string,
+    options: IServiceOptions | {} = {}
+  ) {
     let response = await this.fetchApi<{
       update: {
         matchedCount: number;
         modifiedCount: number;
         upsertedCount: number;
       };
-    }>(`/variant/${variantId}`, {}, "PATCH");
+    }>(`/variant/${variantId}`, null, { ...options, method: "PATCH" });
     return response;
   }
-  async deleteProduct(groupId: string) {
-    let response = await this.fetchApi<any>(`/product/${groupId}`, {}, "DELETE");
+  async deleteProduct(groupId: string, options: IServiceOptions | {} = {}) {
+    let response = await this.fetchApi<any>(`/product/${groupId}`, null, {
+      ...options,
+      method: "DELETE",
+    });
     return response;
   }
-  async deleteVariant(variantId: string) {
-    let response = await this.fetchApi<any>(`/variant/${variantId}`, {}, "DELETE");
+  async deleteVariant(variantId: string, options: IServiceOptions | {} = {}) {
+    let response = await this.fetchApi<any>(`/variant/${variantId}`, null, {
+      ...options,
+      method: "DELETE",
+    });
     return response;
   }
 }

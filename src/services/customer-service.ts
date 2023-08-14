@@ -3,28 +3,50 @@ import {
   ICustomerAddressUpdate,
   ICustomer,
 } from "../interfaces/repositories/CustomerRepositoryInterfaces";
-import { Service } from "./service";
+import { IServiceOptions, Service } from "./service";
 export class CustomerService extends Service {
-  constructor(serviceBaseUrl: string, serviceToken: string) {
-    super(serviceBaseUrl, serviceToken);
+  constructor(serviceBaseUrl: string, apiKey: string) {
+    super(serviceBaseUrl, apiKey);
   }
-  async findCustomers(mobileNumber: string) {
+  async findCustomers(
+    mobileNumber: string,
+    options: IServiceOptions | {} = {}
+  ) {
     let response = await this.fetchApi<{ data: ICustomer[] }>(
-      `/find?mobileNumber=${mobileNumber}`
+      `/find?mobileNumber=${mobileNumber}`,
+      null,
+      {
+        ...options,
+        method: "GET",
+      }
     );
     return response;
   }
-  async getCustomerById(customerId: string) {
-    let response = await this.fetchApi<{ data: ICustomer }>(`/${customerId}`);
+  async getCustomerById(
+    customerId: string,
+    options: IServiceOptions | {} = {}
+  ) {
+    let response = await this.fetchApi<{ data: ICustomer }>(
+      `/${customerId}`,
+      null,
+      { ...options, method: "GET" }
+    );
     return response;
   }
-  async createCustomer(payload: ICustomerCreate) {
-    let response = await this.fetchApi<{ data: string }>(``, payload, "POST");
+  async createCustomer(
+    payload: ICustomerCreate,
+    options: IServiceOptions | {} = {}
+  ) {
+    let response = await this.fetchApi<{ data: string }>(``, payload, {
+      ...options,
+      method: "POST",
+    });
     return response;
   }
   async updateCustomerAddress(
     customerId: string,
-    address: ICustomerAddressUpdate
+    address: ICustomerAddressUpdate,
+    options: IServiceOptions | {} = {}
   ) {
     let response = await this.fetchApi<{
       data: {
@@ -32,7 +54,7 @@ export class CustomerService extends Service {
         matchedCount: number;
         upsertedCount: number;
       };
-    }>(`/${customerId}/address`, address, "PATCH");
+    }>(`/${customerId}/address`, address, { ...options, method: "PATCH" });
     return response;
   }
 }

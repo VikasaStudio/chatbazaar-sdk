@@ -1,20 +1,20 @@
 import { CreateVendorRequest } from "../interfaces/services/StoreServiceInterfaces";
-import { Service } from "./service";
+import { IServiceOptions, Service } from "./service";
 export declare class StoreService extends Service {
-    constructor(serviceBaseUrl: string, serviceToken: string);
-    getStoreById(vendorId: string): Promise<import("./service").ServiceApiResponse<any>>;
-    getStoreByStoreCode(storeCode: string): Promise<import("./service").ServiceApiResponse<any>>;
-    createStore(payload: CreateVendorRequest): Promise<import("./service").ServiceApiResponse<any>>;
+    constructor(serviceBaseUrl: string, apiKey: string);
+    getStoreById(vendorId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<any>>;
+    getStoreByStoreCode(storeCode: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<any>>;
+    createStore(payload: CreateVendorRequest, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<any>>;
     loginVendor(payload: {
         identifierType: `EMAIL` | "STORECODE";
         identifierValue: string;
         password: string;
-    }): Promise<import("./service").ServiceApiResponse<{
+    }, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         refreshToken: string;
         accessToken: string;
         vendorId: string;
     }>>;
-    getNewAccessToken(): Promise<import("./service").ServiceApiResponse<{
+    getNewAccessToken(options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         accessToken: string;
         vendorId: string;
     }>>;
