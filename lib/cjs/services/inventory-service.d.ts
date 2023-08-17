@@ -2,11 +2,14 @@ import { ProductVariantFindFilter, ProductVariantSchema } from "../interfaces/re
 import { IServiceOptions, Service } from "./service";
 export declare class InventoryService extends Service {
     constructor(serviceBaseUrl: string, apiKey: string);
-    getVariantsByGroupId(variantGroupId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
+    getVariantsByGroupId(storeCode: string, variantGroupId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         data: ProductVariantSchema[];
     }>>;
-    findVariants(searchQuery: ProductVariantFindFilter, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
+    findVariants(storeCode: string, searchQuery: ProductVariantFindFilter, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         data: ProductVariantSchema[];
+    }>>;
+    getVariantById(storeCode: string, variantId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
+        data: ProductVariantSchema;
     }>>;
     createVariant(payload: ProductVariantSchema, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         variantId: {
