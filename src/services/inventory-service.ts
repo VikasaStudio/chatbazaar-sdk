@@ -2,7 +2,7 @@ import {
   ProductVariantFindFilter,
   ProductVariantSchema,
 } from "../interfaces/repositories/ProductVariantRepositoryInterfaces";
-import { IServiceOptions, Service } from "./service";
+import { IServiceOptions, IVariantsQuantityUpdateRequest, Service } from "./service";
 
 export class InventoryService extends Service {
   constructor(serviceBaseUrl: string, apiKey: string) {
@@ -78,6 +78,19 @@ export class InventoryService extends Service {
     );
     return response;
   }
+
+  async patchBulkVariantyQuantity(
+    payload: IVariantsQuantityUpdateRequest[],
+    options: IServiceOptions | {} = {}
+  ) {
+    let response = await this.fetchApi<ProductVariantSchema[]>(
+      "/bulk-variants/quantity",
+      payload,
+      { ...options, method: "PATCH" }
+    );
+    return response;
+  }
+
   async patchVariantById(
     variantId: string,
     options: IServiceOptions | {} = {}
