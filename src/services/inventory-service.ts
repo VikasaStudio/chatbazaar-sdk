@@ -10,22 +10,25 @@ export class InventoryService extends Service {
   }
 
   async getVariantsByGroupId(
+    storeCode: string,
     variantGroupId: string,
     options: IServiceOptions | {} = {}
   ) {
     let response = await this.fetchApi<{ data: ProductVariantSchema[] }>(
-      `/product/${variantGroupId}`,
+      `${storeCode}/product/${variantGroupId}`,
       null,
       { ...options, method: "GET" }
     );
     return response;
   }
+
   async findVariants(
+    storeCode: string,
     searchQuery: ProductVariantFindFilter,
     options: IServiceOptions | {} = {}
   ) {
     let response = await this.fetchApi<{ data: ProductVariantSchema[] }>(
-      `/variant`,
+      `/${storeCode}/variant`,
       searchQuery,
       {
         ...options,
@@ -34,6 +37,23 @@ export class InventoryService extends Service {
     );
     return response;
   }
+
+  async getVariantById(
+    storeCode: string,
+    variantId: string,
+    options: IServiceOptions | {} = {}
+  ) {
+    let response = await this.fetchApi<{ data: ProductVariantSchema }>(
+      `/${storeCode}/variant/${variantId}`,
+      null,
+      {
+        ...options,
+        method: "GET",
+      }
+    );
+    return response;
+  }
+
   async createVariant(
     payload: ProductVariantSchema,
     options: IServiceOptions | {} = {}
