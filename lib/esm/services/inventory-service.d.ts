@@ -1,5 +1,5 @@
 import { ProductVariantFindFilter, ProductVariantSchema } from "../interfaces/repositories/ProductVariantRepositoryInterfaces";
-import { IServiceOptions, Service } from "./service";
+import { IServiceOptions, IVariantsQuantityUpdateRequest, Service } from "./service";
 export declare class InventoryService extends Service {
     constructor(serviceBaseUrl: string, apiKey: string);
     getVariantsByGroupId(vendorId: string, variantGroupId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
@@ -21,6 +21,7 @@ export declare class InventoryService extends Service {
     createBulkVariants(payload: ProductVariantSchema[], options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         data: string[];
     }>>;
+    patchBulkVariantyQuantity(payload: IVariantsQuantityUpdateRequest[], options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<ProductVariantSchema[]>>;
     patchVariantById(variantId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         update: {
             matchedCount: number;
