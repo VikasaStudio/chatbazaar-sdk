@@ -9,6 +9,11 @@ export interface IServiceOptions {
   method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 }
 
+export interface IVariantsQuantityUpdateRequest {
+  variantId: string,
+  quantityToConsume: number
+};
+
 export class Service {
   url: string;
   apiKey: string;

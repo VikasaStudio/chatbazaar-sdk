@@ -7,6 +7,10 @@ export interface IServiceOptions {
     Authorization?: string;
     method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 }
+export interface IVariantsQuantityUpdateRequest {
+    variantId: string;
+    quantityToConsume: number;
+}
 export declare class Service {
     url: string;
     apiKey: string;
