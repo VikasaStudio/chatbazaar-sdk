@@ -21,7 +21,9 @@ export declare class InventoryService extends Service {
     createBulkVariants(payload: ProductVariantSchema[], options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         data: string[];
     }>>;
-    patchBulkVariantyQuantity(payload: IVariantsQuantityUpdateRequest[], options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<ProductVariantSchema[]>>;
+    patchBulkVariantyQuantity(payload: IVariantsQuantityUpdateRequest[], options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
+        data: number;
+    }>>;
     patchVariantById(variantId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         update: {
             matchedCount: number;

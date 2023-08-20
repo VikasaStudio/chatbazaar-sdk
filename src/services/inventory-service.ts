@@ -83,7 +83,7 @@ export class InventoryService extends Service {
     payload: IVariantsQuantityUpdateRequest[],
     options: IServiceOptions | {} = {}
   ) {
-    let response = await this.fetchApi<ProductVariantSchema[]>(
+    let response = await this.fetchApi<{data: number}>(
       "/bulk-variants/quantity",
       payload,
       { ...options, method: "PATCH" }
