@@ -1,3 +1,4 @@
+import { VendorSchema } from "../interfaces/repositories/VendorRepositoryInterfaces";
 import { CreateVendorRequest } from "../interfaces/services/StoreServiceInterfaces";
 import { IServiceOptions, Service } from "./service";
 
@@ -7,7 +8,9 @@ export class StoreService extends Service {
   }
 
   async getStoreById(vendorId: string, options: IServiceOptions | {} = {}) {
-    let response = await this.fetchApi<any>(`/${vendorId}`, null, {
+    let response = await this.fetchApi<{
+      data: VendorSchema;
+    }>(`/${vendorId}`, null, {
       ...options,
       method: "GET",
     });
@@ -18,7 +21,9 @@ export class StoreService extends Service {
     storeCode: string,
     options: IServiceOptions | {} = {}
   ) {
-    let response = await this.fetchApi<any>(`/code/${storeCode}`, null, {
+    let response = await this.fetchApi<{
+      data: VendorSchema;
+    }>(`/code/${storeCode}`, null, {
       ...options,
       method: "GET",
     });
@@ -29,7 +34,11 @@ export class StoreService extends Service {
     payload: CreateVendorRequest,
     options: IServiceOptions | {} = {}
   ) {
-    let response = await this.fetchApi<any>(`/register`, payload, {
+    let response = await this.fetchApi<{
+      refreshToken: string;
+      accessToken: string;
+      vendorId: string;
+    }>(`/register`, payload, {
       ...options,
       method: "POST",
     });
