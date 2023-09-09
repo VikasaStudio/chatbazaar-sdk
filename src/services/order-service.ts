@@ -1,8 +1,9 @@
 import {
   OrderItems,
+  OrderSchema,
   OrderStates,
 } from "../interfaces/repositories/OrderRepositoryInterfaces";
-import { UpsertCartItemsRequest } from "../interfaces/services/OrderServiceInterfaces";
+import { IGetOrdersParams, UpsertCartItemsRequest } from "../interfaces/services/OrderServiceInterfaces";
 import { IServiceOptions, Service } from "./service";
 
 export class OrderService extends Service {
@@ -10,7 +11,9 @@ export class OrderService extends Service {
     super(serviceBaseUrl, apiKey);
   }
   async getOrderById(orderId: string, options: IServiceOptions | {} = {}) {
-    let response = await this.fetchApi<any>(`/${orderId}`, null, {
+    let response = await this.fetchApi<{
+      data: OrderSchema;
+    }>(`/${orderId}`, null, {
       ...options,
       method: "GET",
     });
@@ -20,7 +23,13 @@ export class OrderService extends Service {
     payload: UpsertCartItemsRequest,
     options: IServiceOptions | {} = {}
   ) {
-    let response = await this.fetchApi<any>(`/items`, payload, {
+    let response = await this.fetchApi<{
+      data: {
+        matchedCount: number;
+        modifiedCount: number;
+        upsertedCount: number;
+      };
+    }>(`/items`, payload, {
       ...options,
       method: "PUT",
     });
@@ -44,6 +53,19 @@ export class OrderService extends Service {
       { orderState },
       { ...options, method: "PATCH" }
     );
+    return response;
+  }
+  async getActiveOrders(
+    vendorId: string,
+    params?: IGetOrdersParams,
+    options: IServiceOptions | {} = {}
+  ) {
+    const response = await this.fetchApi<{
+      data: OrderSchema[];
+    }>(`/${vendorId}/orders`, params, {
+      ...options,
+      method: "GET",
+    });
     return response;
   }
 }
