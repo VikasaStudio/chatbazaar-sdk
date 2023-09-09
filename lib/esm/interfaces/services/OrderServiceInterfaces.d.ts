@@ -1,4 +1,11 @@
 import { OrderItems } from "../repositories/OrderRepositoryInterfaces";
+export interface IGetOrdersParams {
+    start?: number;
+    limit?: number;
+    sort?: {
+        [key: string]: number;
+    };
+}
 export interface UpsertCartItemsRequest {
     cartId?: string;
     vendorId: string;
