@@ -1,5 +1,6 @@
 import { OrderSchema, OrderStates } from "../interfaces/repositories/OrderRepositoryInterfaces";
-import { IGetOrdersParams, UpsertCartItemsRequest } from "../interfaces/services/OrderServiceInterfaces";
+import { UpsertCartItemsRequest } from "../interfaces/services/OrderServiceInterfaces";
+import { IPaginationMetadata, IPaginationQuery } from "../interfaces/services/ServiceInterfaces";
 import { IServiceOptions, Service } from "./service";
 export declare class OrderService extends Service {
     constructor(serviceBaseUrl: string, apiKey: string);
@@ -15,8 +16,9 @@ export declare class OrderService extends Service {
     }>>;
     checkoutCart(cartId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<any>>;
     updateState(orderId: string, orderState: OrderStates, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<any>>;
-    getActiveOrders(vendorId: string, params?: IGetOrdersParams, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
+    getActiveOrders(vendorId: string, params?: IPaginationQuery, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         data: OrderSchema[];
+        pagination: IPaginationMetadata;
     }>>;
 }
 //# sourceMappingURL=order-service.d.ts.map
