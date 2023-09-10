@@ -3,3 +3,23 @@ export interface ServiceApiResponse {
   code: number;
   data: any;
 }
+export interface IPaginationQuery {
+  start?: number;
+  limit?: number;
+  sort?: { [key: string]: number };
+}
+
+export interface IPaginationMetadata {
+  _curr: {
+    start: number;
+    limit: number;
+  };
+  _next?: {
+    start: number;
+    limit: number;
+  };
+  _prev?: {
+    start: number;
+    limit: number;
+  };
+}
