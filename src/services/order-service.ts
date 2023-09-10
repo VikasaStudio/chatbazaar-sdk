@@ -3,7 +3,11 @@ import {
   OrderSchema,
   OrderStates,
 } from "../interfaces/repositories/OrderRepositoryInterfaces";
-import { IGetOrdersParams, UpsertCartItemsRequest } from "../interfaces/services/OrderServiceInterfaces";
+import { UpsertCartItemsRequest } from "../interfaces/services/OrderServiceInterfaces";
+import {
+  IPaginationMetadata,
+  IPaginationQuery,
+} from "../interfaces/services/ServiceInterfaces";
 import { IServiceOptions, Service } from "./service";
 
 export class OrderService extends Service {
@@ -57,11 +61,12 @@ export class OrderService extends Service {
   }
   async getActiveOrders(
     vendorId: string,
-    params?: IGetOrdersParams,
+    params?: IPaginationQuery,
     options: IServiceOptions | {} = {}
   ) {
     const response = await this.fetchApi<{
       data: OrderSchema[];
+      pagination: IPaginationMetadata;
     }>(`/${vendorId}/orders`, params, {
       ...options,
       method: "GET",
