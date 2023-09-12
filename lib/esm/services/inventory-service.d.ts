@@ -1,12 +1,15 @@
 import { ProductVariantFindFilter, ProductVariantSchema } from "../interfaces/repositories/ProductVariantRepositoryInterfaces";
+import { IPaginationMetadata, IPaginationQuery } from "../interfaces/services/ServiceInterfaces";
 import { IServiceOptions, IVariantsQuantityUpdateRequest, Service } from "./service";
 export declare class InventoryService extends Service {
     constructor(serviceBaseUrl: string, apiKey: string);
-    getVariantsByGroupId(vendorId: string, variantGroupId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
+    getVariantsByGroupId(vendorId: string, variantGroupId: string, queryParams?: IPaginationQuery, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         data: ProductVariantSchema[];
+        pagination: IPaginationMetadata;
     }>>;
-    findVariants(vendorId: string, searchQuery: ProductVariantFindFilter, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
+    findVariants(vendorId: string, searchQuery: ProductVariantFindFilter & IPaginationQuery, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         data: ProductVariantSchema[];
+        pagination: IPaginationMetadata;
     }>>;
     getVariantById(vendorId: string, variantId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         data: ProductVariantSchema;
@@ -31,7 +34,11 @@ export declare class InventoryService extends Service {
             upsertedCount: number;
         };
     }>>;
-    deleteProduct(groupId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<any>>;
-    deleteVariant(variantId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<any>>;
+    deleteProduct(groupId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
+        data: number;
+    }>>;
+    deleteVariant(variantId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
+        data: boolean;
+    }>>;
 }
 //# sourceMappingURL=inventory-service.d.ts.map
