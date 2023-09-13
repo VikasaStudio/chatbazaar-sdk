@@ -23,5 +23,6 @@ export interface IPaginationMetadata {
         start: number;
         limit: number;
     };
+    _total: number;
 }
 //# sourceMappingURL=ServiceInterfaces.d.ts.map

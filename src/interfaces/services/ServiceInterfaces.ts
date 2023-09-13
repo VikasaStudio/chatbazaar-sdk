@@ -22,4 +22,5 @@ export interface IPaginationMetadata {
     start: number;
     limit: number;
   };
+  _total: number;
 }
