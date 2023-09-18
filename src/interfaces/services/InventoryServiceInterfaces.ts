@@ -13,5 +13,6 @@ export interface ProductVariantUpdateRequest {
   brand?: string;
   item_group_id?: string;
   item_category?: string;
+  isActive?:boolean
   // quantity?:number
 }
