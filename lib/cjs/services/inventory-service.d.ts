@@ -27,7 +27,10 @@ export declare class InventoryService extends Service {
     patchBulkVariantyQuantity(payload: IVariantsQuantityUpdateRequest[], options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         data: number;
     }>>;
-    patchVariantById(variantId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
+    patchVariantById(variantId: string, body?: Partial<Exclude<ProductVariantSchema, {
+        _id: string;
+        vendorId: string;
+    }>> | null, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         update: {
             matchedCount: number;
             modifiedCount: number;

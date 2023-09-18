@@ -2,8 +2,15 @@ import {
   ProductVariantFindFilter,
   ProductVariantSchema,
 } from "../interfaces/repositories/ProductVariantRepositoryInterfaces";
-import { IPaginationMetadata, IPaginationQuery } from "../interfaces/services/ServiceInterfaces";
-import { IServiceOptions, IVariantsQuantityUpdateRequest, Service } from "./service";
+import {
+  IPaginationMetadata,
+  IPaginationQuery,
+} from "../interfaces/services/ServiceInterfaces";
+import {
+  IServiceOptions,
+  IVariantsQuantityUpdateRequest,
+  Service,
+} from "./service";
 
 export class InventoryService extends Service {
   constructor(serviceBaseUrl: string, apiKey: string) {
@@ -96,6 +103,9 @@ export class InventoryService extends Service {
 
   async patchVariantById(
     variantId: string,
+    body?: Partial<
+      Exclude<ProductVariantSchema, { _id: string; vendorId: string }>
+    > | null,
     options: IServiceOptions | {} = {}
   ) {
     let response = await this.fetchApi<{
@@ -104,12 +114,12 @@ export class InventoryService extends Service {
         modifiedCount: number;
         upsertedCount: number;
       };
-    }>(`/variant/${variantId}`, null, { ...options, method: "PATCH" });
+    }>(`/variant/${variantId}`, body, { ...options, method: "PATCH" });
     return response;
   }
   async deleteProduct(groupId: string, options: IServiceOptions | {} = {}) {
     let response = await this.fetchApi<{
-      data: number
+      data: number;
     }>(`/product/${groupId}`, null, {
       ...options,
       method: "DELETE",
@@ -118,7 +128,7 @@ export class InventoryService extends Service {
   }
   async deleteVariant(variantId: string, options: IServiceOptions | {} = {}) {
     let response = await this.fetchApi<{
-      data: boolean
+      data: boolean;
     }>(`/variant/${variantId}`, null, {
       ...options,
       method: "DELETE",
