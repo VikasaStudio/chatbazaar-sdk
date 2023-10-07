@@ -77,13 +77,14 @@ export class InventoryService extends Service {
     }>("/variant", payload, { ...options, method: "POST" });
     return response;
   }
+
   async createBulkVariants(
     payload: ProductVariantSchema[],
     options: IServiceOptions | {} = {}
   ) {
     let response = await this.fetchApi<{ data: string[] }>(
       "/bulk-variants",
-      payload,
+      { data: payload },
       { ...options, method: "POST" }
     );
     return response;
@@ -95,7 +96,7 @@ export class InventoryService extends Service {
   ) {
     let response = await this.fetchApi<{ data: number }>(
       "/bulk-variants/quantity",
-      payload,
+      { data: payload },
       { ...options, method: "PATCH" }
     );
     return response;
