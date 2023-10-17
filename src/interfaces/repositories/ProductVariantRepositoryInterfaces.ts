@@ -15,7 +15,9 @@ export interface ProductVariantSchema {
   sale_price: number; // required by facebook catalog
   sale_price_effective_date: string; // required by facebook catalog
   link: string; // required by facebook catalog
-  image_link: string; // required by facebook catalog
+
+  image_data: { url: string; key: string }[];
+
   brand: string; // required by facebook catalog
   item_group_id: string; // required by facebook catalog
 
