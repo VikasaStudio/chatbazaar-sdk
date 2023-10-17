@@ -8,7 +8,7 @@ export interface ProductVariantUpdateRequest {
     sale_price?: number;
     sale_price_effective_date?: string;
     link?: string;
-    image_data: {
+    image_data?: {
         url: string;
         key: string;
     }[];
