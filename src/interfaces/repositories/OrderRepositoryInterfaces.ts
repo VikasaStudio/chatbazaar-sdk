@@ -54,18 +54,14 @@ export interface OrderItems {
   quantity: number;
   price: number;
 }
-export interface OrderCustomInfo<T = any> {
-  name: string;
-  value: T;
-}
-export interface OrderSchema<CustomInfoValue = any> {
+export interface OrderSchema {
   _id?: string; //order id
   vendorId: string; // vendor whose item are being stored in this cart
   customerId: string; // customer who owns this cart
   items: OrderItems[];
   orderState: OrderStates;
   orderStateHistory: OrderStates[];
-  customInfo?: OrderCustomInfo<CustomInfoValue>[];
+  customInfo?: { name: string; value: any }[];
   createdAt: Date;
   lastModifiedAt: Date;
 }

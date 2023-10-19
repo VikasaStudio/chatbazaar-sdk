@@ -15,18 +15,17 @@ export interface OrderItems {
     quantity: number;
     price: number;
 }
-export interface OrderCustomInfo<T = any> {
-    name: string;
-    value: T;
-}
-export interface OrderSchema<CustomInfoValue = any> {
+export interface OrderSchema {
     _id?: string;
     vendorId: string;
     customerId: string;
     items: OrderItems[];
     orderState: OrderStates;
     orderStateHistory: OrderStates[];
-    customInfo?: OrderCustomInfo<CustomInfoValue>[];
+    customInfo?: {
+        name: string;
+        value: any;
+    }[];
     createdAt: Date;
     lastModifiedAt: Date;
 }
