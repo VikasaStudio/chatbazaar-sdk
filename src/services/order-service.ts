@@ -73,7 +73,7 @@ export class OrderService extends Service {
       pagination: IPaginationMetadata;
     }>(
       `/${vendorId}/orders`,
-      { ...queryParams, state: "active" },
+      { ...queryParams },
       {
         ...options,
         method: "GET",
