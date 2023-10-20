@@ -16,7 +16,9 @@ export declare class OrderService extends Service {
     }>>;
     checkoutCart(cartId: string, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<any>>;
     updateState(orderId: string, orderState: OrderStates, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<any>>;
-    getActiveOrders(vendorId: string, queryParams?: IPaginationQuery, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
+    getActiveOrders(vendorId: string, queryParams?: {
+        state?: "active" | "confirmed";
+    } & IPaginationQuery, options?: IServiceOptions | {}): Promise<import("./service").ServiceApiResponse<{
         data: OrderSchema[];
         pagination: IPaginationMetadata;
     }>>;

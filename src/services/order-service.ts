@@ -61,16 +61,24 @@ export class OrderService extends Service {
   }
   async getActiveOrders(
     vendorId: string,
-    queryParams?: IPaginationQuery,
+    queryParams?: { state?: "active" | "confirmed" } & IPaginationQuery,
     options: IServiceOptions | {} = {}
   ) {
+    if (!queryParams) queryParams = {};
+    if (!queryParams.state) {
+      queryParams.state = "active";
+    }
     const response = await this.fetchApi<{
       data: OrderSchema[];
       pagination: IPaginationMetadata;
-    }>(`/${vendorId}/orders`, queryParams, {
-      ...options,
-      method: "GET",
-    });
+    }>(
+      `/${vendorId}/orders`,
+      { ...queryParams, state: "active" },
+      {
+        ...options,
+        method: "GET",
+      }
+    );
     return response;
   }
 }
