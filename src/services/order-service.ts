@@ -61,13 +61,10 @@ export class OrderService extends Service {
   }
   async getActiveOrders(
     vendorId: string,
-    queryParams?: { state?: "active" | "confirmed" } & IPaginationQuery,
+    queryParams?: IPaginationQuery,
     options: IServiceOptions | {} = {}
   ) {
     if (!queryParams) queryParams = {};
-    if (!queryParams.state) {
-      queryParams.state = "active";
-    }
     const response = await this.fetchApi<{
       data: OrderSchema[];
       pagination: IPaginationMetadata;
