@@ -1,4 +1,3 @@
-import { PaymentLinks } from "razorpay/dist/types/paymentLink";
 export declare enum PaymentStates {
     PaymentPending = "pending",
     PaymentSuccess = "success",
@@ -15,7 +14,10 @@ export interface PaymentSchema {
     currency: "INR";
     paymentState: PaymentStates;
     paymentStateHistory: PaymentStates[];
-    customInfo: PaymentLinks.RazorpayPaymentLink;
+    customInfo?: {
+        name: string;
+        value: any;
+    }[];
     createdAt: Date;
     lastModifiedAt: Date;
 }

@@ -20,7 +20,7 @@ export interface PaymentSchema {
   paymentState: PaymentStates;
   paymentStateHistory: PaymentStates[];
 
-  customInfo: PaymentLinks.RazorpayPaymentLink;
+  customInfo?: { name: string; value: any }[];
 
   createdAt: Date;
   lastModifiedAt: Date;
